@@ -56,9 +56,9 @@
 					</f:facet>
 				</p:menubar>
 
-				<h3>Hallo Administrator</h3>
-				
-				Hello, #{lbn.name}
+				<h3>Hallo, #{lbn.name} </h3>
+				<p />
+				Sie sind als Administrator eingeloggt.
 				<p />
 
 				<p>
@@ -100,7 +100,7 @@
 							<!-- 							=========== -->
 							<p:column headerText="Termin buchen...">
 								<p:commandButton icon="ui-icon-arrowthick-1-e" title="Icon Only"
-									actionListener="#{services.newMethod}">
+									actionListener="#{services.newMethod}" action="calendar.xhtml?faces-redirect=true">
 								</p:commandButton>
 							</p:column>
 							<!-- 							=========== -->

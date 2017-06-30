@@ -249,7 +249,7 @@ public class ScheduleView implements Serializable {
 	public void onDateSelect(SelectEvent selectEvent) {
 
 		System.out.println("+++++ new string: " + service.newString);
-		
+
 		event = new DefaultScheduleEvent(service.newString, (Date) selectEvent.getObject(),
 				(Date) selectEvent.getObject());
 	}

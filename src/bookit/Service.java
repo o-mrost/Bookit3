@@ -38,7 +38,15 @@ public class Service {
 	private Statement stm = null;
 	private ResultSet rs = null;
 
-	static String newString = "newSting";
+	private String newString = "newSting";
+
+	public String getNewString() {
+		return newString;
+	}
+
+	public void setNewString(String newString) {
+		this.newString = newString;
+	}
 
 	@PostConstruct
 	public void init() {
