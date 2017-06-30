@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+
+	<ui:composition template="/masterLayout.xhtml">
+		<ui:define name="title">Login</ui:define>
+		<ui:define name="content">
+
+			<!-- ================= User view ================= -->
+
+			<h:form rendered="#{lb.userLoggedIn}">
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Se	rvices" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:separator />
+					</p:submenu>
+
+					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
+						<p:menuitem value="Mein Account" url="#" />
+						<p:menuitem value="Aktuelle Termine" url="#" />
+					</p:submenu>
+
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
+						</p:submenu>
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:inputText style="margin-right:12px" placeholder="Suchen" />
+					</f:facet>
+				</p:menubar>
+			</h:form>
+
+
+			<!--  ===================================Login menu admin===============================   -->
+
+			<h:form rendered="#{lb.adminLoggedIn}">
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Services" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:separator />
+					</p:submenu>
+
+					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
+						<p:menuitem value="Mein Account" url="#" />
+						<p:menuitem value="Aktuelle Termine" url="#" />
+					</p:submenu>
+
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
+						</p:submenu>
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:inputText style="margin-right:12px" placeholder="Suchen" />
+					</f:facet>
+				</p:menubar>
+			</h:form>
+
+			<!--  ===================================Logout menu===============================   -->
+
+			<h:form rendered="#{!lb.anybodyLoggedIn}">
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Services" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:separator />
+					</p:submenu>
+
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
+						</p:submenu>
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:inputText style="margin-right:12px" placeholder="Suchen" />
+					</f:facet>
+				</p:menubar>
+			</h:form>
+
+			<!-- ================= Switch languages button ================= -->
+
+			<p:menuButton value="Options" style="float: right;">
+				<p:menuitem value="Deutsch" icon="flagge_de" immediate="true"
+					ajax="false" actionListener="#{lb.languageDE}" />
+
+				<p:menuitem value="English" icon="flagge_en" immediate="true"
+					ajax="false" actionListener="#{lb.languageEN}" />
+
+			</p:menuButton>
+			
+			
+
+	Add here
+	<p />
+	some nice 
+	<p />
+	text and 
+	<p />
+	may be
+	<p /> 
+	several
+	<p />
+	pictures
+	
+	<p />
+	so that login page 
+	<p />
+	is not the first what 
+	<p />
+	the user sees
+	<p />
+	<p />
+	<p />
+			<!-- ================= Login page ================= -->
+
+			<h:panelGroup rendered="#{!lb.anybodyLoggedIn}">
+
+				<h:panelGrid columns="2"
+					style="border: solid #336699 5px; background-color: #f0f0f0">
+						
+					#{res.keyHeader}
+					<h:inputText titel="Kennung" required="true" value="#{lb.username}">
+					</h:inputText>
+					
+					#{res.keyHeaderPass}
+					<h:inputSecret titel="Passwort" value="#{lb.pw}" required="true"
+						requiredMessage="Passwort fehlt!" size="40">
+						<f:validateLength minimum="4" />
+					</h:inputSecret>
+
+					<f:facet name="footer">
+						<h:commandButton value="Login" actionListener="#{lb.actLogin}" />
+					</f:facet>
+
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<!-- =================  Logout und Kennung ================= -->
+
+			<h:panelGrid columns="1" rendered="#{lb.anybodyLoggedIn}">
+				
+				Angemeldet als <strong>#{lb.username}</strong>
+				<p />
+
+				<h:commandButton value="Logout" actionListener="#{lb.aclLogout}" />
+
+			</h:panelGrid>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

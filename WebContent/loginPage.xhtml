@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE html>
+
+<!-- ===========================================================================
+ loginPage.xhtml - Startseite für Navigationsbeispiel
+ ============================================================================ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition template="/masterLayout.xhtml">
+
+		<ui:define name="title">Login</ui:define>
+		<ui:define name="content">
+
+			<!-- ========================== Menu Logged out =============================== -->
+
+			<h:panelGroup rendered="#{!lbn.userLoggedIn and !lbn.adminLoggedIn}">
+
+				<p:menubar>
+					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact" />
+
+					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
+						<p:menuitem value="#{res.keyKontaktdetails}" url="contact.xhtml" />
+						<p:menuitem value="#{res.keyImpressum}" url="impressum.xhtml" />
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:menuButton value="Options" style="float: right;">
+							<p:menuitem value="Deutsch" icon="flagge_de" immediate="true"
+								ajax="false" actionListener="#{lb.languageDE}" />
+
+							<p:menuitem value="English" icon="flagge_en" immediate="true"
+								ajax="false" actionListener="#{lb.languageEN}" />
+
+						</p:menuButton>
+					</f:facet>
+
+				</p:menubar>
+
+				<!-- ========================== Welcome Text =============================== -->
+
+				<h:form>
+					<p:outputPanel deferred="true">
+						<h3>Willkommen bei dem Frisör Ihres Vertrauens!</h3>
+						<p>
+							Wenn Sie auf der Suche nach einem einmaligen Haarschnitt sind,
+							sind sie hier genau richtig!<br /> Um einen Termin zu buchen
+							loggen Sie sich bitte ein oder registrieren Sie sich.
+						</p>
+					</p:outputPanel>
+
+					<div style="height: 10px"></div>
+
+				</h:form>
+
+				<!-- ========================== Login Grid =============================== -->
+
+				<h:panelGrid columns="2"
+					style="border: solid #336699 1px; background-color: #f0f0f0">
+					
+					
+ 					#{res.keyHeader}
+					<h:inputText titel="Kennung" required="true" value="#{lbn.kennung}"
+						requiredMessage="Kennung fehlt" size="40" />
+ 			
+ 					#{res.keyHeaderPass}
+ 					<h:inputSecret titel="Passwort" value="#{lbn.pw}" required="true"
+						requiredMessage="Passwort fehlt" size="40">
+						<f:validateLength minimum="4" />
+					</h:inputSecret>
+
+					<h:outputText
+						value="Zur Anmeldung als Admin bitte das Häkchen setzen:  " />
+
+					<p:selectBooleanCheckbox value="#{lbn.adminLogin}" />
+
+					<f:facet name="footer">
+						<h:commandButton value="Login" action="#{lbn.actLoginNew}" />
+					</f:facet>
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<!-- ====================== Logout und Kennung ======================== -->
+
+			<h:panelGrid columns="1" rendered="#{lbn.loggedIn}">
+				
+ 				Angemeldet als <strong>#{lbn.kennung}</strong>
+
+				<h:commandButton value="Logout" actionListener="#{lbn.aclLogout}" />
+			</h:panelGrid>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

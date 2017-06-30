@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE html>
+
+<!-- ===========================================================================
+ admin.xhtml - Client Seite admin
+ ============================================================================ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+
+	<ui:composition template="/masterLayout.xhtml">
+
+		<ui:define name="title">Contact</ui:define>
+		<ui:define name="content">
+
+			<p:menubar>
+				<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact" />
+
+				<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
+					<p:menuitem value="#{res.keyKontaktdetails}" url="contact.xhtml" />
+					<p:menuitem value="#{res.keyImpressum}" url="impressum.xhtml" />
+				</p:submenu>
+
+				<f:facet name="options">
+					<p:menuButton value="Options" style="float: right;">
+						<p:menuitem value="Deutsch" icon="flagge_de" immediate="true"
+							ajax="false" actionListener="#{lb.languageDE}" />
+
+						<p:menuitem value="English" icon="flagge_en" immediate="true"
+							ajax="false" actionListener="#{lb.languageEN}" />
+
+					</p:menuButton>
+				</f:facet>
+
+			</p:menubar>
+
+			<p>
+				<strong>Kontakt</strong>
+			</p>
+
+			<pre style="font-size: 12px, font-family:Arial">
+Anbieter:
+
+<strong>HairCut Friseur Salon</strong>
+
+Badenschestraße 52
+10825 Berlin
+
+Telefon: 030/1234567-8
+Telefax:030/1234567-9
+
+E-Mail:<a href="mailto:info@HairCut.de">info@haircut.de</a>
+Website: www.bookit.de</pre>
+			<p> </p>
+
+			<pre>
+<strong>Öffnungszeiten</strong>
+<pre style="font-size: 12px, font-family:Arial">
+Montag:		Ruhetag  
+Dienstag:	9:00 - 18:00 Uhr
+Mittwoch:	9:00 - 18:00 Uhr 
+Donnerstag:	9:00 - 18:00 Uhr 
+Freitag:	9:00 - 16:00 Uhr 
+Samstag:	nach Vereinbarung</pre>
+</pre>
+			<div style="width: 960px;">
+
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.652633818033!2d13.335525915806166!3d52.4854248798076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a8505d89927295%3A0xd2189c089b7d991f!2sHochschule+f%C3%BCr+Wirtschaft+und+Recht+Berlin+-+Campus+Sch%C3%B6neberg!5e0!3m2!1sde!2sde!4v1498644419542"
+					width="700" height="400" frameborder="0" style="border: 0"></iframe>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
