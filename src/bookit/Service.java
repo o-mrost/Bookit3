@@ -2,6 +2,9 @@ package bookit;
 
 import bookit.MbDb;
 import bookit.ServiceDAO;
+
+import static java.lang.System.out;
+
 import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -9,96 +12,133 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-@ManagedBean(name="services")
+import org.primefaces.model.DefaultScheduleModel;
+
+@ManagedBean(name = "services")
 @SessionScoped
 
 public class Service {
-	
-	static public void formatCurrency(Locale currentLocale, int cost) {
 
-	    Currency currentCurrency = Currency.getInstance(currentLocale);
-	    NumberFormat currencyFormatter = 
-	        NumberFormat.getCurrencyInstance(currentLocale);
-	    currencyFormatter.format(cost);
-	}
-	
-	/**
-	 * @return the serviceID
-	 */
-	public int getServiceID() {
-		return serviceID;
-	}
+	private int iD, kosten;
+	private String name;
+	private Time dauer;
 
+	private String newString;
+	// = "name";
 
-	/**
-	 * @param serviceID the serviceID to set
-	 */
-	public void setServiceID(int serviceID) {
-		this.serviceID = serviceID;
+	private ArrayList<Service> listOfServices = new ArrayList<>();
+
+	private Util util = new Util();
+
+	private Connection con = null;
+	private Statement stm = null;
+	private ResultSet rs = null;
+
+	@PostConstruct
+	public void init() {
+		connectToDb();
 	}
 
+	private void connectToDb() {
+		System.out.println("load info from db");
 
-	/**
-	 * @return the serviceKosten
-	 */
-	public int getServiceKosten() {
-		return serviceKosten;
+		String SQL_SELECT = "SELECT * FROM services";
+
+		if (util != null)
+			con = util.getCon();
+		if (con != null) {
+			try {
+				stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				rs = stm.executeQuery(SQL_SELECT);
+				Service serviceList = new Service();
+
+				while (rs.next()) {
+
+					serviceList.setID(rs.getInt("serviceID"));
+					serviceList.setName(rs.getString("serviceName"));
+					serviceList.setDauer(rs.getTime("serviceDauer"));
+					serviceList.setKosten(rs.getInt("serviceKosten"));
+
+					listOfServices.add(serviceList);
+
+					System.out.println("id: " + serviceList.iD + ", name: " + serviceList.name + ", dauer: "
+							+ serviceList.dauer + ", kosten: " + serviceList.kosten);
+
+					// setID(rs.getInt("serviceID"));
+					// setName(rs.getString("serviceName"));
+					// setDauer(rs.getTime("serviceDauer"));
+					// setKosten(rs.getInt("serviceKosten"));
+				}
+				// listOfServices.add(serviceList);
+
+				System.out.println("list: " + listOfServices);
+
+			} catch (Exception ex) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "SQLException", ex.getLocalizedMessage()));
+				out.println("Error: " + ex);
+				ex.printStackTrace();
+			}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Exception", "Keine Verbindung zur Datenbank (Treiber nicht gefunden?)"));
+			out.println("Keine Verbingung zur Datenbank");
+		}
 	}
 
-
-	/**
-	 * @param serviceKosten the serviceKosten to set
-	 */
-	public void setServiceKosten(int serviceKosten) {
-		formatCurrency(Locale.GERMANY, serviceKosten);
-		System.out.println("EUR: "+serviceKosten);
-		this.serviceKosten = serviceKosten;
+	public String getNewString() {
+		return newString;
 	}
 
-
-
-	/**
-	 * @return the serviceName
-	 */
-	public String getServiceName() {
-		return serviceName;
+	public void setNewString(String newStringTemp) {
+		// newStringTemp = "another string";
+		// this.newString = newStringTemp;
+		newString = "third string";
 	}
 
-
-	/**
-	 * @param serviceName the serviceName to set
-	 */
-	public void setServiceName(String serviceName) {
-		this.serviceName = serviceName;
+	public int getID() {
+		return iD;
 	}
 
-
-	/**
-	 * @return the serviceDauer
-	 */
-	public Time getServiceDauer() {
-		return serviceDauer;
+	public void setID(int iD) {
+		this.iD = iD;
 	}
 
-
-	/**
-	 * @param serviceDauer the serviceDauer to set
-	 */
-	public void setServiceDauer(Time serviceDauer) {
-		this.serviceDauer = serviceDauer;
+	public int getKosten() {
+		return kosten;
 	}
 
+	public void setKosten(int kosten) {
+		this.kosten = kosten;
+	}
 
-	private int serviceID, serviceKosten;
-	private String serviceName;
-	private Time serviceDauer;
+	public String getName() {
+		return name;
+	}
 
-	
-	public ArrayList<Service> getMessages() throws SQLException{
-		return ServiceDAO.getServices();
+	public void setName(String name) {
+		System.out.println("name: " + name);
+		this.name = name;
+	}
+
+	public Time getDauer() {
+		return dauer;
+	}
+
+	public void setDauer(Time dauer) {
+		this.dauer = dauer;
+	}
+
+	public ArrayList<Service> getMessages() throws SQLException {
+		
+		System.out.println("return value: " + listOfServices);
+		return listOfServices;
 	}
 }
