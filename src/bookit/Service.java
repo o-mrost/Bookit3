@@ -30,9 +30,6 @@ public class Service {
 	private String name;
 	private Time dauer;
 
-	private String newString;
-	// = "name";
-
 	private ArrayList<Service> listOfServices = new ArrayList<>();
 
 	private Util util = new Util();
@@ -41,9 +38,15 @@ public class Service {
 	private Statement stm = null;
 	private ResultSet rs = null;
 
+	static String newString = "newSting";
+
 	@PostConstruct
 	public void init() {
 		connectToDb();
+	}
+
+	public void newMethod() {
+		System.out.println("new method: " + newString);
 	}
 
 	private void connectToDb() {
@@ -57,24 +60,25 @@ public class Service {
 			try {
 				stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 				rs = stm.executeQuery(SQL_SELECT);
-				Service serviceList = new Service();
+				// Service serviceList = new Service();
 
 				while (rs.next()) {
 
-					serviceList.setID(rs.getInt("serviceID"));
-					serviceList.setName(rs.getString("serviceName"));
-					serviceList.setDauer(rs.getTime("serviceDauer"));
-					serviceList.setKosten(rs.getInt("serviceKosten"));
+					// serviceList.setID(rs.getInt("serviceID"));
+					// serviceList.setName(rs.getString("serviceName"));
+					// serviceList.setDauer(rs.getTime("serviceDauer"));
+					// serviceList.setKosten(rs.getInt("serviceKosten"));
+					//
+					// listOfServices.add(serviceList);
+					//
+					// System.out.println("id: " + serviceList.iD + ", name: " +
+					// serviceList.name + ", dauer: "
+					// + serviceList.dauer + ", kosten: " + serviceList.kosten);
 
-					listOfServices.add(serviceList);
-
-					System.out.println("id: " + serviceList.iD + ", name: " + serviceList.name + ", dauer: "
-							+ serviceList.dauer + ", kosten: " + serviceList.kosten);
-
-					// setID(rs.getInt("serviceID"));
-					// setName(rs.getString("serviceName"));
-					// setDauer(rs.getTime("serviceDauer"));
-					// setKosten(rs.getInt("serviceKosten"));
+					setID(rs.getInt("serviceID"));
+					setName(rs.getString("serviceName"));
+					setDauer(rs.getTime("serviceDauer"));
+					setKosten(rs.getInt("serviceKosten"));
 				}
 				// listOfServices.add(serviceList);
 
@@ -91,16 +95,6 @@ public class Service {
 					"Exception", "Keine Verbindung zur Datenbank (Treiber nicht gefunden?)"));
 			out.println("Keine Verbingung zur Datenbank");
 		}
-	}
-
-	public String getNewString() {
-		return newString;
-	}
-
-	public void setNewString(String newStringTemp) {
-		// newStringTemp = "another string";
-		// this.newString = newStringTemp;
-		newString = "third string";
 	}
 
 	public int getID() {
@@ -137,7 +131,7 @@ public class Service {
 	}
 
 	public ArrayList<Service> getMessages() throws SQLException {
-		
+
 		System.out.println("return value: " + listOfServices);
 		return listOfServices;
 	}

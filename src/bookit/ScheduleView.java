@@ -32,6 +32,7 @@ import org.primefaces.model.ScheduleModel;
 public class ScheduleView implements Serializable {
 
 	public LoginBeanNew loginBean = new LoginBeanNew();
+	Service service = new Service();
 
 	private Util util = new Util();
 
@@ -157,7 +158,7 @@ public class ScheduleView implements Serializable {
 					stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 					rs = stm.executeQuery(select);
 				}
-				
+
 				System.out.println("+++++ select" + "" + select);
 
 				while (rs.next()) {
@@ -238,6 +239,7 @@ public class ScheduleView implements Serializable {
 			eventModel.updateEvent(event);
 
 		event = new DefaultScheduleEvent();
+
 	}
 
 	public void onEventSelect(SelectEvent selectEvent) {
@@ -245,7 +247,11 @@ public class ScheduleView implements Serializable {
 	}
 
 	public void onDateSelect(SelectEvent selectEvent) {
-		event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
+
+		System.out.println("+++++ new string: " + service.newString);
+		
+		event = new DefaultScheduleEvent(service.newString, (Date) selectEvent.getObject(),
+				(Date) selectEvent.getObject());
 	}
 
 }
