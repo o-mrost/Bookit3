@@ -78,28 +78,8 @@
 						<p></p>
 						<h:outputText value="Liste der angebotenen Services: " />
 						<p></p>
-						<p:dataTable value="#{services.messages}" var="services">
-							<p:column headerText="Service">
-								<h:outputText value="#{services.serviceName}" />
-							</p:column>
-							<!-- =========== -->
-							<p:column headerText="Dauer">
-								<h:outputText value="#{services.serviceDauer}" />
+						<!-- 					data table -->
 
-							</p:column>
-							<!-- =========== -->
-							<p:column headerText="Kosten">
-								<h:outputText value="#{services.serviceKosten}">
-									<f:convertNumber currencyCode="EUR" type="currency" />
-								</h:outputText>
-							</p:column>
-							<!-- =========== -->
-							<p:column headerText="Termin buchen...">
-								<p:button icon="ui-icon-arrowthick-1-e" title="Icon Only">
-								</p:button>
-							</p:column>
-							<!-- =========== -->
-						</p:dataTable>
 					</p:panel>
 
 					<p:panel id="about" header="Über uns">
@@ -128,7 +108,7 @@
 								</h:panelGrid>
 
 							</p:fieldset>
-							
+
 						</h:form>
 
 					</p:panel>

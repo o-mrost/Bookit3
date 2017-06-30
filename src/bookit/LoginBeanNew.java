@@ -20,7 +20,7 @@ import javax.faces.event.ActionEvent;
 
 public class LoginBeanNew {
 
-	String sOutcome = null;
+	static String sOutcome = null;
 
 	private Util util = new Util();
 	private Connection con = null;
@@ -31,10 +31,12 @@ public class LoginBeanNew {
 	private String password = "";
 	private boolean userLoggedIn = false;
 	private boolean adminLoggedIn = false;
+	static int userId;
+
 	private String name = "";
 	private String sqlUsername = "";
 	private String sqlPassword = "";
-	private boolean adminLogin = false;
+	private boolean adminCheck = false;
 
 	private String kennung = "";
 	private String pw = "";
@@ -49,12 +51,20 @@ public class LoginBeanNew {
 
 	/*--------------------------------------------------------------------------*/
 
-	public boolean isAdminLogin() {
-		return adminLogin;
+//	public int getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
+
+	public boolean isAdminCheck() {
+		return adminCheck;
 	}
 
-	public void setAdminLogin(boolean adminLogin) {
-		this.adminLogin = adminLogin;
+	public void setAdminCheck(boolean adminLogin) {
+		this.adminCheck = adminLogin;
 	}
 
 	public String getSqlUsername() {
@@ -97,6 +107,10 @@ public class LoginBeanNew {
 		return adminLoggedIn;
 	}
 
+	public void setAdminLoggedIn(boolean adminLoggedIn) {
+		this.adminLoggedIn = adminLoggedIn;
+	}
+
 	public void setKennung(String s) {
 		kennung = s;
 	}
@@ -128,7 +142,7 @@ public class LoginBeanNew {
 	public String actLoginNew() {
 
 		System.out.println("actLogin()...");
-		System.out.println("_______________________ admin login " + adminLogin);
+		System.out.println("_______________________ admin login " + adminCheck);
 
 		kennung = kennung.trim();
 		pw = pw.trim();
@@ -137,13 +151,13 @@ public class LoginBeanNew {
 		System.out.println("passwort: " + pw);
 
 		String select;
-		String selectUser = "SELECT Customer_Lastname, Customer_Firstname,"
+		String selectUser = "SELECT ID_Customer, Customer_Lastname, Customer_Firstname,"
 				+ " Customer_Login, Customer_Passwort FROM customer WHERE Customer_login = ?";
 
 		String selectAdmin = "SELECT Company_Name, Company_Login, Company_Passwort FROM company "
 				+ "WHERE Company_Login = ?";
 
-		if (adminLogin) {
+		if (adminCheck) {
 			select = selectAdmin;
 		} else
 			select = selectUser;
@@ -159,7 +173,7 @@ public class LoginBeanNew {
 				rs = ps.executeQuery();
 
 				if (rs.first())
-					showData(adminLogin);
+					showData(adminCheck);
 
 			} catch (Exception ex) {
 				FacesContext.getCurrentInstance().addMessage(null,
@@ -224,6 +238,7 @@ public class LoginBeanNew {
 			setName(rs.getString("customer_firstname") + " " + rs.getString("customer_lastname"));
 			setSqlPassword(rs.getString("customer_passwort"));
 			setSqlUsername(rs.getString("customer_login"));
+			userId = rs.getInt("id_customer");
 
 			userLoggedIn = true;
 			adminLoggedIn = false;

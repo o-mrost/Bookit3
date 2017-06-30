@@ -80,28 +80,7 @@
 						<p></p>
 						<h:outputText value="Liste der angebotenen Services: " />
 						<p></p>
-						<p:dataTable value="#{services.messages}" var="services">
-							<p:column headerText="Service">
-								<h:outputText value="#{services.serviceName}" />
-							</p:column>
-							<!-- =========== -->
-							<p:column headerText="Dauer">
-								<h:outputText value="#{services.serviceDauer}" />
 
-							</p:column>
-							<!-- =========== -->
-							<p:column headerText="Kosten">
-								<h:outputText value="#{services.serviceKosten}">
-									<f:convertNumber currencyCode="EUR" type="currency" />
-								</h:outputText>
-							</p:column>
-							<!-- =========== -->
-							<p:column headerText="Termin buchen...">
-								<p:button icon="ui-icon-arrowthick-1-e" title="Icon Only">
-								</p:button>
-							</p:column>
-							<!-- =========== -->
-						</p:dataTable>
 					</p:panel>
 
 					<p:panel id="about" header="Über uns">
@@ -114,7 +93,8 @@
 							<p:fieldset legend="Wir bekommen Zuwachs!"
 								style="margin-bottom:20px">
 								<h:panelGrid columns="2" cellpadding="5">
-									<p:graphicImage name="SusanneSonne.png" />
+									<h:graphicImage library="img" name="susanne.png" alt="sonne" />
+
 									<h:outputText
 										value="Anfang nächster Woche wird unser Team um ein weiteres Mitglied bereichert: Susanne Sonne wird eine dreijährige Ausbildung bei uns beginnen. Wir sagen: Herzlich Willkommen im Team Susanne!" />
 								</h:panelGrid>
@@ -123,12 +103,13 @@
 							<p:fieldset legend="Wir haben jetzt länger geöffnet!"
 								style="margin-bottom:20px">
 								<h:panelGrid columns="2" cellpadding="5">
-									<p:graphicImage name="sonne.png" />
+									<p:graphicImage library="img" name="sonne.png" />
 									<h:outputText
 										value="Während der Sommerzeit verlängern wir unsere Öffnungszeiten bis 18 Uhr. Wir freuen uns auf Sie!"></h:outputText>
 								</h:panelGrid>
 
 							</p:fieldset>
+
 						</h:form>
 
 					</p:panel>

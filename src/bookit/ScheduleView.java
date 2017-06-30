@@ -31,12 +31,13 @@ import org.primefaces.model.ScheduleModel;
 @ViewScoped
 public class ScheduleView implements Serializable {
 
+	public LoginBeanNew loginBean = new LoginBeanNew();
+
 	private Util util = new Util();
 
 	private Connection con = null;
 	private Statement stm = null;
 	private ResultSet rs = null;
-	// private PreparedStatement ps = null;
 
 	private int id_booking = 0;
 	private Date time_to = new Date(0L);
@@ -47,10 +48,14 @@ public class ScheduleView implements Serializable {
 
 	private TimeConvert convert = new TimeConvert();
 
-	final String SQL_SELECT = "SELECT b.ID_Booking booking, b.Time_From timefrom, "
+	String select;
+
+	String SQL_SELECT = "SELECT b.ID_Booking booking, b.Time_From timefrom, "
 			+ "b.Time_To timeto, b.Comment comments, c.Company_Name compname, "
 			+ "cus.Customer_Lastname custname FROM booking b join company c on "
 			+ "b.ID_Company=c.ID_Company join customer cus on b.ID_Customer=cus.ID_Customer";
+
+	String sql_user = " WHERE cus.ID_Customer = ?";
 
 	private ScheduleModel eventModel;
 	private ScheduleEvent event = new DefaultScheduleEvent();
@@ -138,46 +143,26 @@ public class ScheduleView implements Serializable {
 			con = util.getCon();
 		if (con != null) {
 			try {
-				stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-				rs = stm.executeQuery(SQL_SELECT);
-				// if (rs.first())
-				// showData();
+
+				if (loginBean.sOutcome == "user") {
+					select = SQL_SELECT + sql_user;
+
+					PreparedStatement ps = con.prepareStatement(select);
+					ps.setInt(1, loginBean.userId);
+					rs = ps.executeQuery();
+
+				} else {
+					select = SQL_SELECT;
+
+					stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+					rs = stm.executeQuery(select);
+				}
+				
+				System.out.println("+++++ select" + "" + select);
+
 				while (rs.next()) {
 					displayAllAppointmentData();
 				}
-
-			} catch (Exception ex) {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "SQLException", ex.getLocalizedMessage()));
-				out.println("Error: " + ex);
-				ex.printStackTrace();
-			}
-		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Exception", "Keine Verbindung zur Datenbank (Treiber nicht gefunden?)"));
-			out.println("Keine Verbingung zur Datenbank");
-		}
-	}
-
-	/*--------------------------------------------------------------------------*/
-	/**
-	 * Verbindung zur Datenbank herstellen
-	 * 
-	 * @param ae
-	 * 
-	 */
-	public void connect(ActionEvent ae) {
-
-		out.println("connect()...");
-
-		if (util != null)
-			con = util.getCon();
-		if (con != null) {
-			try {
-				stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-				rs = stm.executeQuery(SQL_SELECT);
-				if (rs.first())
-					displayAllAppointmentData();
 
 			} catch (Exception ex) {
 				FacesContext.getCurrentInstance().addMessage(null,
@@ -202,8 +187,6 @@ public class ScheduleView implements Serializable {
 		setTime_from(rs.getTimestamp("timefrom"));
 
 		eventModel.addEvent(new DefaultScheduleEvent(comment, time_from, time_to));
-		
-		System.out.println("displayAllData");
 
 	}
 
@@ -243,8 +226,6 @@ public class ScheduleView implements Serializable {
 
 				ps.close();
 
-				// rs = stm.executeQuery(sql_insert);
-
 			} catch (SQLException ex) {
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "SQLException", ex.getLocalizedMessage()));
@@ -267,21 +248,4 @@ public class ScheduleView implements Serializable {
 		event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
 	}
 
-	public void onEventMove(ScheduleEntryMoveEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved",
-				"Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-
-		addMessage(message);
-	}
-
-	public void onEventResize(ScheduleEntryResizeEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized",
-				"Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-
-		addMessage(message);
-	}
-
-	private void addMessage(FacesMessage message) {
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
 }
