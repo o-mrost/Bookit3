@@ -13,12 +13,20 @@ public class ServiceView implements Serializable {
 
 	private ArrayList<ServiceObject> serviceObjects;
 
+	public void setServiceObjects(ArrayList<ServiceObject> serviceObjects) {
+		this.serviceObjects = serviceObjects;
+	}
+
 	@ManagedProperty("#{serviceService}")
 	private ServiceService service;
 
 	@PostConstruct
 	public void init() {
-		service.getAllServicesFromDB();
+		
+		serviceObjects = service.getAllServicesFromDB();
+		
+		//service.getAllServicesFromDB();
+
 	}
 
 	public ArrayList<ServiceObject> getServiceObjects() {

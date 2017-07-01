@@ -22,7 +22,7 @@ public class ServiceService {
 	
 	private ArrayList<ServiceObject> listOfServices = new ArrayList<>();
 
-	public void getAllServicesFromDB() {
+	public ArrayList<ServiceObject> getAllServicesFromDB() {
 		System.out.println("load info from db");
 
 		String SQL_SELECT = "SELECT * FROM services";
@@ -66,6 +66,8 @@ public class ServiceService {
 					"Exception", "Keine Verbindung zur Datenbank (Treiber nicht gefunden?)"));
 			out.println("Keine Verbingung zur Datenbank");
 		}
+		
+		return listOfServices;
 
 	}
 
