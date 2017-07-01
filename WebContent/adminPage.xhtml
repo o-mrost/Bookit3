@@ -20,9 +20,7 @@
 		<ui:define name="title">Admin view</ui:define>
 		<ui:define name="content">
 
-			<!-- 			<h:form rendered="#{lbn.adminLoggedIn}"> -->
-
-			<h:form>
+			<h:form rendered="#{lbn.adminLoggedIn}">
 
 				<p:growl id="messages" />
 
@@ -56,7 +54,7 @@
 					</f:facet>
 				</p:menubar>
 
-				<h3>Hallo, #{lbn.name} </h3>
+				<h3>Hallo, #{lbn.name}</h3>
 				<p />
 				Sie sind als Administrator eingeloggt.
 				<p />
@@ -69,8 +67,8 @@
 				</p>
 
 				<p>
-					<h:commandButton value="Logout" actionListener="#{lbn.aclLogout}"
-						action="loginPage.xhtml" />
+					<p:commandButton value="Logout"
+						action="#{lbn.logout}" />
 				</p>
 
 				<p:dashboard id="board" model="#{db.model}">
@@ -100,7 +98,8 @@
 							<!-- 							=========== -->
 							<p:column headerText="Termin buchen...">
 								<p:commandButton icon="ui-icon-arrowthick-1-e" title="Icon Only"
-									actionListener="#{services.newMethod}" action="calendar.xhtml?faces-redirect=true">
+									actionListener="#{services.newMethod}"
+									action="calendar.xhtml?faces-redirect=true">
 								</p:commandButton>
 							</p:column>
 							<!-- 							=========== -->

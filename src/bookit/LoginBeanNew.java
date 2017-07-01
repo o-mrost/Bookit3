@@ -225,7 +225,7 @@ public class LoginBeanNew {
 	}
 
 	public String newLogin() {
-		
+
 		System.out.println("new login ");
 
 		return "user";
@@ -258,6 +258,15 @@ public class LoginBeanNew {
 		loggedIn = false;
 		adminLoggedIn = false;
 		userLoggedIn = false;
+		sOutcome = "noone";
+	}
+
+	public String logout() {
+		loggedIn = false;
+		adminLoggedIn = false;
+		userLoggedIn = false;
+		sOutcome = "noone";
+		return sOutcome;
 	}
 
 	public void languageDE(ActionEvent ae) {
