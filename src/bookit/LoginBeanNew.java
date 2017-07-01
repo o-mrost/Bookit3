@@ -52,13 +52,13 @@ public class LoginBeanNew {
 
 	/*--------------------------------------------------------------------------*/
 
-//	public int getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(int userId) {
-//		this.userId = userId;
-//	}
+	// public int getUserId() {
+	// return userId;
+	// }
+	//
+	// public void setUserId(int userId) {
+	// this.userId = userId;
+	// }
 
 	public boolean isAdminCheck() {
 		return adminCheck;
@@ -224,6 +224,13 @@ public class LoginBeanNew {
 		return sOutcome;
 	}
 
+	public String newLogin() {
+		
+		System.out.println("new login ");
+
+		return "user";
+	}
+
 	private void showData(boolean admin) throws SQLException {
 
 		if (admin) {
@@ -252,7 +259,7 @@ public class LoginBeanNew {
 		adminLoggedIn = false;
 		userLoggedIn = false;
 	}
-	
+
 	public void languageDE(ActionEvent ae) {
 		System.out.println("deutsch");
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.GERMAN);

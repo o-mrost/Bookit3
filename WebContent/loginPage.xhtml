@@ -63,29 +63,28 @@
 
 				<!-- ========================== Login Grid =============================== -->
 
-				<h:panelGrid columns="2"
-					style="border: solid #336699 1px; background-color: #f0f0f0">
-					
-					
- 					#{res.keyHeader}
-					<h:inputText titel="Kennung" required="true" value="#{lbn.kennung}"
-						requiredMessage="Kennung fehlt" size="40" />
- 			
- 					#{res.keyHeaderPass}
- 					<h:inputSecret titel="Passwort" value="#{lbn.pw}" required="true"
-						requiredMessage="Passwort fehlt" size="40">
-						<f:validateLength minimum="4" />
-					</h:inputSecret>
 
-					<h:outputText
-						value="Zur Anmeldung als Admin bitte das Häkchen setzen:  " />
+				<p:panel id="panel" header="Log in"
+					style="margin-bottom:10px; width:500px">
+					<p:messages id="messages" />
+					<h:panelGrid columns="2" cellpadding="5">
 
-					<p:selectBooleanCheckbox value="#{lbn.adminCheck}" />
+						<h:outputLabel for="name" value="#{res.keyHeader}:" />
+						<p:inputText id="name" required="true" value="#{lbn.kennung}" />
 
-					<f:facet name="footer">
-						<h:commandButton value="Login" action="#{lbn.actLoginNew}" />
-					</f:facet>
-				</h:panelGrid>
+						<p:outputLabel for="extended" value="#{res.keyHeaderPass}:" />
+						<p:password id="extended" value="#{lbn.pw}" required="true" />
+
+						<h:outputLabel
+							value="Zur Anmeldung als Admin bitte das Häkchen setzen:  " />
+						<p:selectBooleanCheckbox value="#{lbn.adminCheck}" />
+
+					</h:panelGrid>
+				</p:panel>
+
+				<p:commandButton value="Submit" action="#{lbn.actLoginNew}"
+					update="panel" />
+
 			</h:panelGroup>
 
 			<!-- ====================== Logout und Kennung ======================== -->
