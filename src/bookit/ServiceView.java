@@ -1,5 +1,6 @@
 package bookit;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
@@ -15,24 +16,14 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class ServiceView implements Serializable {
 
+	static String serviceChosen;
+
 	private ArrayList<ServiceObject> serviceObjects;
 
 	@ManagedProperty("#{serviceBean}")
 	private ServiceBean serviceBean;
 
 	private ServiceObject selected;
-
-	public ServiceObject getSelected() {
-		return selected;
-	}
-
-	public void setSelected(ServiceObject selected) {
-
-		this.selected = selected;
-
-		System.out.println("selected item: " + selected.getName());
-		redirectToCalendar();
-	}
 
 	@PostConstruct
 	public void init() {
@@ -44,23 +35,37 @@ public class ServiceView implements Serializable {
 
 	}
 
-	public void redirectToCalendar() {
+	public static String getServiceChosen() {
+		return serviceChosen;
+	}
 
-		// add here redirect to the calendar page (with string and navigation
-		// rules may be)
+	public static void setServiceChosen(String serviceChosen) {
+		ServiceView.serviceChosen = serviceChosen;
+	}
 
-		System.out.println("redirect with string: " + selected.getName());
+	public ServiceObject getSelected() {
+		return selected;
+	}
 
+	public void setSelected(ServiceObject selected) throws IOException {
+
+		this.selected = selected;
+
+		System.out.println("selected item: " + selected.getName());
+		serviceChosen = selected.getName();
+		redirect();
+	}
+
+	public void redirect() throws IOException {
+		FacesContext.getCurrentInstance().getExternalContext().redirect("calendar.xhtml");
 	}
 
 	public void setServiceBean(ServiceBean service) {
-
 		this.serviceBean = service;
 
 	}
 
 	public ArrayList<ServiceObject> getServiceObjects() {
-
 		return serviceObjects;
 	}
 

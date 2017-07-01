@@ -224,13 +224,6 @@ public class LoginBeanNew {
 		return sOutcome;
 	}
 
-	public String newLogin() {
-
-		System.out.println("new login ");
-
-		return "user";
-	}
-
 	private void showData(boolean admin) throws SQLException {
 
 		if (admin) {

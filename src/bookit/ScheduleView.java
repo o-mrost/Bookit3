@@ -31,6 +31,8 @@ public class ScheduleView implements Serializable {
 	public LoginBeanNew loginBean = new LoginBeanNew();
 	___Service service = new ___Service();
 
+	ServiceView view = new ServiceView();
+
 	private Util util = new Util();
 
 	private Connection con = null;
@@ -245,9 +247,9 @@ public class ScheduleView implements Serializable {
 
 	public void onDateSelect(SelectEvent selectEvent) {
 
-		System.out.println("+++++ new string: " + service.getNewString());
+		System.out.println("+++++ new string: " + view.getServiceChosen());
 
-		event = new DefaultScheduleEvent(service.getNewString(), (Date) selectEvent.getObject(),
+		event = new DefaultScheduleEvent(view.getServiceChosen(), (Date) selectEvent.getObject(),
 				(Date) selectEvent.getObject());
 	}
 

@@ -40,7 +40,7 @@
 		</navigation-case>
 
 	</navigation-rule>
-	
+
 	<navigation-rule>
 
 		<from-view-id>/adminPage.xhtml</from-view-id>
@@ -52,7 +52,7 @@
 		</navigation-case>
 
 	</navigation-rule>
-	
+
 	<navigation-rule>
 
 		<from-view-id>/userPage.xhtml</from-view-id>
@@ -64,7 +64,6 @@
 		</navigation-case>
 
 	</navigation-rule>
-
 
 	<managed-bean>
 		<managed-bean-name>mb_db</managed-bean-name>
