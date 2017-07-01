@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -19,8 +18,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.event.ScheduleEntryMoveEvent;
-import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
@@ -51,7 +48,7 @@ public class ScheduleView implements Serializable {
 
 	String select;
 
-	String SQL_SELECT = "SELECT b.ID_Booking booking, b.Time_From timefrom, "
+	String sql_select = "SELECT b.ID_Booking booking, b.Time_From timefrom, "
 			+ "b.Time_To timeto, b.Comment comments, c.Company_Name compname, "
 			+ "cus.Customer_Lastname custname FROM booking b join company c on "
 			+ "b.ID_Company=c.ID_Company join customer cus on b.ID_Customer=cus.ID_Customer";
@@ -146,14 +143,14 @@ public class ScheduleView implements Serializable {
 			try {
 
 				if (loginBean.sOutcome == "user") {
-					select = SQL_SELECT + sql_user;
+					select = sql_select + sql_user;
 
 					PreparedStatement ps = con.prepareStatement(select);
 					ps.setInt(1, loginBean.userId);
 					rs = ps.executeQuery();
 
 				} else {
-					select = SQL_SELECT;
+					select = sql_select;
 
 					stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 					rs = stm.executeQuery(select);
@@ -248,9 +245,9 @@ public class ScheduleView implements Serializable {
 
 	public void onDateSelect(SelectEvent selectEvent) {
 
-		System.out.println("+++++ new string: " + service.newString);
+		System.out.println("+++++ new string: " + service.getNewString());
 
-		event = new DefaultScheduleEvent(service.newString, (Date) selectEvent.getObject(),
+		event = new DefaultScheduleEvent(service.getNewString(), (Date) selectEvent.getObject(),
 				(Date) selectEvent.getObject());
 	}
 
