@@ -31,7 +31,7 @@ public class LoginBeanNew {
 	private String username = "";
 	private String password = "";
 	private boolean userLoggedIn = false;
-	private boolean adminLoggedIn = false;
+	static boolean adminLoggedIn = false;
 	static int userId;
 
 	private String name = "";
@@ -52,13 +52,13 @@ public class LoginBeanNew {
 
 	/*--------------------------------------------------------------------------*/
 
-	// public int getUserId() {
-	// return userId;
-	// }
-	//
-	// public void setUserId(int userId) {
-	// this.userId = userId;
-	// }
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public boolean isAdminCheck() {
 		return adminCheck;

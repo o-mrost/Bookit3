@@ -29,7 +29,6 @@ import org.primefaces.model.ScheduleModel;
 public class ScheduleView implements Serializable {
 
 	public LoginBeanNew loginBean = new LoginBeanNew();
-	___Service service = new ___Service();
 
 	ServiceView view = new ServiceView();
 
@@ -212,7 +211,15 @@ public class ScheduleView implements Serializable {
 				PreparedStatement ps = con.prepareStatement(sql_insert);
 
 				ps.setInt(1, 1);
-				ps.setInt(2, 100);
+
+				// System.out.println("admin logged in: " + );
+
+				if (loginBean.isAdminLoggedIn()) {
+					ps.setInt(2, 99);
+				} else {
+					ps.setInt(2, loginBean.getUserId());
+				}
+
 				ps.setTimestamp(3, sqlStartDate);
 				ps.setTimestamp(4, sqlEndDate);
 				ps.setString(5, event.getTitle());
