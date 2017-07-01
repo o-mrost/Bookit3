@@ -20,7 +20,9 @@
 		<ui:define name="title">Admin view</ui:define>
 		<ui:define name="content">
 
-			<h:form rendered="#{lbn.adminLoggedIn}">
+			<!-- 			<h:form rendered="#{lbn.adminLoggedIn}"> -->
+
+			<h:form>
 
 				<p:growl id="messages" />
 
@@ -67,42 +69,43 @@
 				</p>
 
 				<p>
-					<p:commandButton value="Logout"
-						action="#{lbn.logout}" />
+					<p:commandButton value="Logout" action="#{lbn.logout}" />
 				</p>
 
 				<p:dashboard id="board" model="#{db.model}">
 					<p:ajax event="reorder" listener="#{db.handleReorder}" />
 
-					<p:panel id="services" header="Liste der gebuchten Termine">
+					<p:panel id="services" header="Unsere Services">
 						<p></p>
-						<h:outputText value="Liste der angebotenen Services: " />
+						<h:outputText value="Liste der angebotenen Services" />
 						<p></p>
-						<!-- 					data table -->
 
-						<p:dataTable value="444" var="services"> -->
+						
+						<!-- 						table          -->
+
+						<p:dataTable value="#{services.messages}" var="service">
 							<p:column headerText="Service">
-								<h:outputText value="123" />
+								<h:outputText value="#{services.name}" />
 							</p:column>
-							<!-- 							=========== -->
+
 							<p:column headerText="Dauer">
-								<h:outputText value="#5" />
+								<h:outputText value="#{services.dauer}" />
 
 							</p:column>
-							<!-- 							=========== -->
-							<p:column headerText="Kosten">
-								<h:outputText value="6">
 
+							<p:column headerText="Kosten">
+								<h:outputText value="#{services.kosten}">
+									<f:convertNumber currencyCode="EUR" type="currency" />
 								</h:outputText>
 							</p:column>
-							<!-- 							=========== -->
+
 							<p:column headerText="Termin buchen...">
 								<p:commandButton icon="ui-icon-arrowthick-1-e" title="Icon Only"
 									actionListener="#{services.newMethod}"
 									action="calendar.xhtml?faces-redirect=true">
 								</p:commandButton>
 							</p:column>
-							<!-- 							=========== -->
+
 						</p:dataTable>
 
 					</p:panel>

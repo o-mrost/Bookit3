@@ -79,19 +79,34 @@
 						<p></p>
 						<h:outputText value="Liste der angebotenen Services: " />
 						<p></p>
-						
-						cars table
 
-						<p:dataTable var="car" value="#{carBean.cars}">
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Model" />
-								</f:facet>
-								<h:outputText value="#{car.model}" />
+
+
+						<p:dataTable id="basicDT" var="car"
+							value="#{dtSelectionView.cars1}">
+							<f:facet name="header">
+            Basic
+        </f:facet>
+							<p:column headerText="Id">
+								<h:outputText value="#{car.id}" />
 							</p:column>
-
+							<p:column headerText="Year">
+								<h:outputText value="#{car.year}" />
+							</p:column>
+							<p:column headerText="Brand">
+								<h:outputText value="#{car.brand}" />
+							</p:column>
+							<p:column headerText="Color">
+								<h:outputText value="#{car.color}" />
+							</p:column>
+							<p:column style="width:32px;text-align: center">
+								<p:commandButton oncomplete="PF('carDialog').show()"
+									icon="ui-icon-search" title="View">
+									<f:setPropertyActionListener value="#{car}"
+										target="#{dtSelectionView.selectedCar}" />
+								</p:commandButton>
+							</p:column>
 						</p:dataTable>
-
 
 						
 						another table

@@ -1,25 +1,14 @@
 package bookit;
 
-import bookit.MbDb;
-import bookit.ServiceDAO;
-
 import static java.lang.System.out;
 
 import java.sql.*;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Currency;
-import java.util.List;
-import java.util.Locale;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
-
-import org.primefaces.model.DefaultScheduleModel;
 
 @ManagedBean(name = "services")
 @SessionScoped
@@ -33,7 +22,6 @@ public class Service {
 	private ArrayList<Service> listOfServices = new ArrayList<>();
 
 	private Util util = new Util();
-
 	private Connection con = null;
 	private Statement stm = null;
 	private ResultSet rs = null;
@@ -54,10 +42,11 @@ public class Service {
 	}
 
 	public void newMethod() {
-		System.out.println("new method: " + newString);
+		System.out.println("new method: ");
 	}
 
 	private void connectToDb() {
+
 		System.out.println("load info from db");
 
 		String SQL_SELECT = "SELECT * FROM services";
@@ -66,31 +55,24 @@ public class Service {
 			con = util.getCon();
 		if (con != null) {
 			try {
+
 				stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 				rs = stm.executeQuery(SQL_SELECT);
-				// Service serviceList = new Service();
 
 				while (rs.next()) {
 
-					// serviceList.setID(rs.getInt("serviceID"));
-					// serviceList.setName(rs.getString("serviceName"));
-					// serviceList.setDauer(rs.getTime("serviceDauer"));
-					// serviceList.setKosten(rs.getInt("serviceKosten"));
-					//
-					// listOfServices.add(serviceList);
-					//
-					// System.out.println("id: " + serviceList.iD + ", name: " +
-					// serviceList.name + ", dauer: "
-					// + serviceList.dauer + ", kosten: " + serviceList.kosten);
+					Service newService = new Service();
 
-					setID(rs.getInt("serviceID"));
-					setName(rs.getString("serviceName"));
-					setDauer(rs.getTime("serviceDauer"));
-					setKosten(rs.getInt("serviceKosten"));
+					newService.setID(rs.getInt("serviceID"));
+					newService.setName(rs.getString("serviceName"));
+					newService.setDauer(rs.getTime("serviceDauer"));
+					newService.setKosten(rs.getInt("serviceKosten"));
+
+					listOfServices.add(newService);
+
 				}
-				// listOfServices.add(serviceList);
 
-				System.out.println("list: " + listOfServices);
+				System.out.println("total length: " + listOfServices.size());
 
 			} catch (Exception ex) {
 				FacesContext.getCurrentInstance().addMessage(null,
@@ -103,6 +85,7 @@ public class Service {
 					"Exception", "Keine Verbindung zur Datenbank (Treiber nicht gefunden?)"));
 			out.println("Keine Verbingung zur Datenbank");
 		}
+
 	}
 
 	public int getID() {
@@ -126,7 +109,6 @@ public class Service {
 	}
 
 	public void setName(String name) {
-		System.out.println("name: " + name);
 		this.name = name;
 	}
 
@@ -140,7 +122,11 @@ public class Service {
 
 	public ArrayList<Service> getMessages() throws SQLException {
 
-		System.out.println("return value: " + listOfServices);
+		for (Service ser : listOfServices) {
+			System.out.println(
+					"services: " + ser.getName() + ", " + ser.getKosten() + ", " + ser.getID() + ", " + ser.getDauer());
+		}
+
 		return listOfServices;
 	}
 }
