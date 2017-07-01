@@ -11,8 +11,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ServiceDAO {
-	public static ArrayList<Service> getServices() throws SQLException {
+public class ___ServiceDAO {
+	public static ArrayList<___Service> getServices() throws SQLException {
 
 		// establish databse connection
 		MysqlDataSource mds = new MysqlDataSource();
@@ -26,7 +26,7 @@ public class ServiceDAO {
 			System.out.println("Connection established");
 
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM services");
-			ArrayList<Service> bl = new ArrayList<Service>();
+			ArrayList<___Service> bl = new ArrayList<___Service>();
 			ResultSet rs = ps.executeQuery();
 
 			// System.out.println("Printing resultset...");
@@ -50,7 +50,7 @@ public class ServiceDAO {
 
 			boolean found = true;
 			while (rs.next()) {
-				Service serviceList = new Service();
+				___Service serviceList = new ___Service();
 				serviceList.setID(rs.getInt("serviceID"));
 				serviceList.setName(rs.getString("serviceName"));
 				serviceList.setDauer(rs.getTime("serviceDauer"));

@@ -75,11 +75,38 @@
 				<p:dashboard id="board" model="#{db.model}">
 					<p:ajax event="reorder" listener="#{db.handleReorder}" />
 
-					<p:panel id="services" header="Liste der gebuchten Termine">
+					<p:panel id="services" header="Unsere Services">
 						<p></p>
 						<h:outputText value="Liste der angebotenen Services: " />
 						<p></p>
 
+						<!-- 						table          -->
+
+						<p:dataTable value="#{dtBasicView.serviceObjects}"
+							var="serviceObject">
+							<p:column headerText="Service">
+								<h:outputText value="#{serviceObject.name}" />
+							</p:column>
+
+							<p:column headerText="Dauer">
+								<h:outputText value="#{serviceObject.dauer}" />
+
+							</p:column>
+
+							<p:column headerText="Kosten">
+								<h:outputText value="#{serviceObject.kosten}">
+									<f:convertNumber currencyCode="EUR" type="currency" />
+								</h:outputText>
+							</p:column>
+
+							<p:column>
+								<p:commandButton value="Termin buchen"
+									icon="ui-icon-arrowthick-1-e" title="Icon Only">
+									<f:setPropertyActionListener value="#{serviceObject}"
+										target="#{dtBasicView.selected}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
 					</p:panel>
 
 					<p:panel id="about" header="Über uns">

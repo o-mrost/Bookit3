@@ -11,9 +11,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name = "serviceService")
+@ManagedBean(name = "serviceBean")
 @ApplicationScoped
-public class ServiceService {
+public class ServiceBean {
 
 	private Util util = new Util();
 	private Connection con = null;

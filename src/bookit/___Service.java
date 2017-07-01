@@ -13,13 +13,13 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "services")
 @SessionScoped
 
-public class Service {
+public class ___Service {
 
 	private int iD, kosten;
 	private String name;
 	private Time dauer;
 
-	private ArrayList<Service> listOfServices = new ArrayList<>();
+	private ArrayList<___Service> listOfServices = new ArrayList<>();
 
 	private Util util = new Util();
 	private Connection con = null;
@@ -61,7 +61,7 @@ public class Service {
 
 				while (rs.next()) {
 
-					Service newService = new Service();
+					___Service newService = new ___Service();
 
 					newService.setID(rs.getInt("serviceID"));
 					newService.setName(rs.getString("serviceName"));
@@ -120,9 +120,9 @@ public class Service {
 		this.dauer = dauer;
 	}
 
-	public ArrayList<Service> getMessages() throws SQLException {
+	public ArrayList<___Service> getMessages() throws SQLException {
 
-		for (Service ser : listOfServices) {
+		for (___Service ser : listOfServices) {
 			System.out.println(
 					"services: " + ser.getName() + ", " + ser.getKosten() + ", " + ser.getID() + ", " + ser.getDauer());
 		}

@@ -80,32 +80,33 @@
 						<h:outputText value="Liste der angebotenen Services" />
 						<p></p>
 
-						
+
 						<!-- 						table          -->
 
-						<p:dataTable value="#{services.messages}" var="service">
+						<p:dataTable value="#{dtBasicView.serviceObjects}"
+							var="serviceObject">
 							<p:column headerText="Service">
-								<h:outputText value="#{services.name}" />
+								<h:outputText value="#{serviceObject.name}" />
 							</p:column>
 
 							<p:column headerText="Dauer">
-								<h:outputText value="#{services.dauer}" />
+								<h:outputText value="#{serviceObject.dauer}" />
 
 							</p:column>
 
 							<p:column headerText="Kosten">
-								<h:outputText value="#{services.kosten}">
+								<h:outputText value="#{serviceObject.kosten}">
 									<f:convertNumber currencyCode="EUR" type="currency" />
 								</h:outputText>
 							</p:column>
 
-							<p:column headerText="Termin buchen...">
-								<p:commandButton icon="ui-icon-arrowthick-1-e" title="Icon Only"
-									actionListener="#{services.newMethod}"
-									action="calendar.xhtml?faces-redirect=true">
+							<p:column>
+								<p:commandButton value="Termin buchen"
+									icon="ui-icon-arrowthick-1-e" title="Icon Only">
+									<f:setPropertyActionListener value="#{serviceObject}"
+										target="#{dtBasicView.selected}" />
 								</p:commandButton>
 							</p:column>
-
 						</p:dataTable>
 
 					</p:panel>

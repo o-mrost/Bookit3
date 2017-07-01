@@ -27,7 +27,8 @@
 
 					<!-- 						table          -->
 
-					<p:dataTable value="#{dtBasicView.serviceObjects}" var="serviceObject">
+					<p:dataTable value="#{dtBasicView.serviceObjects}"
+						var="serviceObject">
 						<p:column headerText="Service">
 							<h:outputText value="#{serviceObject.name}" />
 						</p:column>
@@ -43,10 +44,11 @@
 							</h:outputText>
 						</p:column>
 
-						<p:column headerText="Termin buchen...">
-							<p:commandButton icon="ui-icon-arrowthick-1-e" title="Icon Only"
-								actionListener="#{services.newMethod}"
-								action="calendar.xhtml?faces-redirect=true">
+						<p:column>
+							<p:commandButton value="Termin buchen"
+								icon="ui-icon-arrowthick-1-e" title="Icon Only">
+								<f:setPropertyActionListener value="#{serviceObject}"
+									target="#{dtBasicView.selected}" />
 							</p:commandButton>
 						</p:column>
 

@@ -29,7 +29,7 @@ import org.primefaces.model.ScheduleModel;
 public class ScheduleView implements Serializable {
 
 	public LoginBeanNew loginBean = new LoginBeanNew();
-	Service service = new Service();
+	___Service service = new ___Service();
 
 	private Util util = new Util();
 
