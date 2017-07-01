@@ -87,15 +87,6 @@
 
 			</h:panelGroup>
 
-			<!-- ====================== Logout und Kennung ======================== -->
-
-			<h:panelGrid columns="1" rendered="#{lbn.loggedIn}">
-				
- 				Angemeldet als <strong>#{lbn.kennung}</strong>
-
-				<h:commandButton value="Logout" actionListener="#{lbn.aclLogout}" />
-			</h:panelGrid>
-
 		</ui:define>
 	</ui:composition>
 

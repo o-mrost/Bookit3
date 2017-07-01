@@ -68,9 +68,12 @@
 					</h:outputText>
 				</p>
 
+				<!--================ logout button  ================-->
 				<p>
 					<p:commandButton value="Logout" action="#{lbn.logout}" />
 				</p>
+
+				<!--=================	dashboard ===================-->
 
 				<p:dashboard id="board" model="#{db.model}">
 					<p:ajax event="reorder" listener="#{db.handleReorder}" />
@@ -81,7 +84,7 @@
 						<p></p>
 
 
-						<!-- 						table          -->
+						<!--======================== table =====================-->
 
 						<p:dataTable value="#{dtBasicView.serviceObjects}"
 							var="serviceObject">

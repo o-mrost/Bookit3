@@ -247,14 +247,17 @@ public class LoginBeanNew {
 		}
 	}
 
-	public void aclLogout(ActionEvent ae) {
-		loggedIn = false;
-		adminLoggedIn = false;
-		userLoggedIn = false;
-		sOutcome = "noone";
-	}
+//	public void aclLogout(ActionEvent ae) {
+//
+//		System.out.println("logout with action event");
+//		loggedIn = false;
+//		adminLoggedIn = false;
+//		userLoggedIn = false;
+//		sOutcome = "noone";
+//	}
 
 	public String logout() {
+		System.out.println("logout ......");
 		loggedIn = false;
 		adminLoggedIn = false;
 		userLoggedIn = false;

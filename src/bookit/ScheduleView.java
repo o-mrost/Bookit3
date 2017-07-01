@@ -212,8 +212,6 @@ public class ScheduleView implements Serializable {
 
 				ps.setInt(1, 1);
 
-				// System.out.println("admin logged in: " + );
-
 				if (loginBean.isAdminLoggedIn()) {
 					ps.setInt(2, 99);
 				} else {
