@@ -20,9 +20,7 @@
 		<ui:define name="title">Admin view</ui:define>
 		<ui:define name="content">
 
-			<!-- 			<h:form rendered="#{lbn.adminLoggedIn}"> -->
-
-			<h:form>
+			<h:form rendered="#{lbn.adminLoggedIn}">
 
 				<p:growl id="messages" />
 
@@ -87,7 +85,7 @@
 						<!--======================== table =====================-->
 
 						<p:dataTable value="#{dtBasicView.serviceObjects}"
-							var="serviceObject">
+							var="serviceObject" paginator="true" rows="5">
 							<p:column headerText="Service">
 								<h:outputText value="#{serviceObject.name}" />
 							</p:column>

@@ -28,7 +28,7 @@
 					<!-- 						table          -->
 
 					<p:dataTable value="#{dtBasicView.serviceObjects}"
-						var="serviceObject">
+						var="serviceObject" paginator="true" rows="5">
 						<p:column headerText="Service">
 							<h:outputText value="#{serviceObject.name}" />
 						</p:column>

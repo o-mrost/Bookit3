@@ -3,6 +3,8 @@ package bookit;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -20,20 +22,50 @@ public class ServiceView implements Serializable {
 
 	private ArrayList<ServiceObject> serviceObjects;
 
+	
+
+	private ArrayList<ServiceObject> serviceObjectsToDisplay;
+
+	public ArrayList<ServiceObject> getServiceObjectsToDisplay() {
+		return serviceObjectsToDisplay;
+	}
+
+	public void setServiceObjectsToDisplay(ArrayList<ServiceObject> serviceObjectsToDisplay) {
+		this.serviceObjectsToDisplay = serviceObjectsToDisplay;
+	}
+
 	@ManagedProperty("#{serviceBean}")
 	private ServiceBean serviceBean;
 
 	private ServiceObject selected;
+
+	public int initialSize;
 
 	@PostConstruct
 	public void init() {
 
 		// add here check for already existing services in the list
 
+		// serviceBean.getListOfServices();
+
 		serviceObjects = serviceBean.getAllServicesFromDB();
-		System.out.println("size" + serviceObjects.size());
+		//
+		// // serviceObjectsToDisplay = serviceBean.getAllServicesFromDB();
+		//
+		// System.out.println("total length, check here! " +
+		// serviceBean.getSizeOfList());
+		//
+		// Collection<ServiceObject> collection = serviceObjects;
+		//
+		// System.out.println("size of collection: " + collection.size());
 
 	}
+
+	// public void showAllServices() {
+	// serviceObjects = serviceBean.getAllServicesFromDB();
+	// System.out.println("size" + serviceObjects.size());
+	//
+	// }
 
 	public static String getServiceChosen() {
 		return serviceChosen;
@@ -66,6 +98,8 @@ public class ServiceView implements Serializable {
 	}
 
 	public ArrayList<ServiceObject> getServiceObjects() {
+
+		System.out.println("getter from view");
 		return serviceObjects;
 	}
 

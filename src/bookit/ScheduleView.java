@@ -10,13 +10,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
@@ -27,13 +33,14 @@ import org.primefaces.model.ScheduleModel;
 @ManagedBean
 @ViewScoped
 public class ScheduleView implements Serializable {
+	
 
 	public LoginBeanNew loginBean = new LoginBeanNew();
 
 	ServiceView view = new ServiceView();
+	
 
 	private Util util = new Util();
-
 	private Connection con = null;
 	private Statement stm = null;
 	private ResultSet rs = null;
@@ -44,6 +51,34 @@ public class ScheduleView implements Serializable {
 	private String comment;
 	private String companyName = "";
 	private String customerName;
+
+	private String serviceSelected = null;
+	private HtmlSelectOneMenu cbxSkin = new HtmlSelectOneMenu();
+	private List<SelectItem> options = new ArrayList<SelectItem>();
+
+	public List<SelectItem> getOptions() {
+		// System.out.println("getOptions method");
+		return options;
+	}
+
+	public void setCbxSkin(HtmlSelectOneMenu cbxSkin) {
+		this.cbxSkin = cbxSkin;
+	}
+
+	public HtmlSelectOneMenu getCbxSkin() {
+		// System.out.println("getCbxSkin methode");
+
+		cbxSkin.setValue("Maerz");
+		return cbxSkin;
+	}
+
+	public String getServiceSelected() {
+		return serviceSelected;
+	}
+
+	public void setServiceSelected(String serviceSelected) {
+		this.serviceSelected = serviceSelected;
+	}
 
 	private TimeConvert convert = new TimeConvert();
 
@@ -133,6 +168,14 @@ public class ScheduleView implements Serializable {
 		eventModel = new DefaultScheduleModel();
 
 		connectToDb();
+
+		options.add(new SelectItem("first value", "first treatment", "Description_1"));
+		options.add(new SelectItem("bart value", "bart", "Description_2"));
+		options.add(new SelectItem("welle value", "dauerwelle", "Description_3"));
+	}
+
+	public void cbxChangeListner(ValueChangeEvent vce) {
+		System.out.println("Deine Wahl: " + vce.getNewValue());
 	}
 
 	private void connectToDb() {
