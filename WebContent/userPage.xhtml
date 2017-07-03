@@ -56,13 +56,13 @@
 					</f:facet>
 				</p:menubar>
 
-				<h3>Hallo, #{lbn.name}</h3>
+				<h3>#{res.keyHallo}, #{lbn.name}</h3>
 				<p />
-				Sie sind als User eingeloggt.
+				#{res.keyloginals}.
 				<p />
 
 				<p>
-					Heute ist
+					#{res.keyHeute},
 					<h:outputText value="#{lbn.date}">
 						<f:convertDateTime locale="de_DE" dateStyle="full" type="both" />
 					</h:outputText>
@@ -104,7 +104,7 @@
 							</p:column>
 
 							<p:column>
-								<p:commandButton value="Termin buchen"
+								<p:commandButton value="#{res.keybuchen}"
 									icon="ui-icon-arrowthick-1-e" title="Icon Only">
 									<f:setPropertyActionListener value="#{serviceObject}"
 										target="#{dtBasicView.selected}" />

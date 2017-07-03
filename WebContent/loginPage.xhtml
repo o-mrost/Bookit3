@@ -49,11 +49,9 @@
 
 				<h:form>
 					<p:outputPanel deferred="true">
-						<h3>Willkommen bei dem Frisör Ihres Vertrauens!</h3>
+						<h3>#{res.keyIntro}</h3>
 						<p>
-							Wenn Sie auf der Suche nach einem einmaligen Haarschnitt sind,
-							sind sie hier genau richtig!<br /> Um einen Termin zu buchen
-							loggen Sie sich bitte ein oder registrieren Sie sich.
+							#{res.keyIntro2}<br /> #{res.keyIntro3}
 						</p>
 					</p:outputPanel>
 
@@ -76,13 +74,13 @@
 						<p:password id="extended" value="#{lbn.pw}" required="true" />
 
 						<h:outputLabel
-							value="Zur Anmeldung als Admin bitte das Häkchen setzen:  " />
+							value="#{res.keyHaken}" />
 						<p:selectBooleanCheckbox value="#{lbn.adminCheck}" />
 
 					</h:panelGrid>
 				</p:panel>
 
-				<p:commandButton value="Submit" action="#{lbn.actLoginNew}"
+				<p:commandButton value="#{res.keyLogin}" action="#{lbn.actLoginNew}"
 					update="panel" />
 
 			</h:panelGroup>
