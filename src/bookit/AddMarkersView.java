@@ -22,39 +22,66 @@ public class AddMarkersView implements Serializable {
       
     private double lng;
   
+    /**
+     * 
+     */
     @PostConstruct
     public void init() {
         emptyModel = new DefaultMapModel();
     }
       
+    /**
+     * @return
+     */
     public MapModel getEmptyModel() {
         return emptyModel;
     }
       
+    /**
+     * @return
+     */
     public String getTitle() {
         return title;
     }
   
+    /**
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
   
+    /**
+     * @return
+     */
     public double getLat() {
         return lat;
     }
   
+    /**
+     * @param lat
+     */
     public void setLat(double lat) {
         this.lat = lat;
     }
   
+    /**
+     * @return
+     */
     public double getLng() {
         return lng;
     }
   
+    /**
+     * @param lng
+     */
     public void setLng(double lng) {
         this.lng = lng;
     }
       
+    /**
+     * 
+     */
     public void addMarker() {
         Marker marker = new Marker(new LatLng(lat, lng), title);
         emptyModel.addOverlay(marker);

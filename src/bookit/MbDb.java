@@ -61,28 +61,46 @@ public class MbDb implements Serializable {
 
 	/*--------------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
 	public MbDb() {
 		log("Creating bookit.MbDb at " + new Date());
 	}
 
 	/*--------------------------------------------------------------------------*/
 
+	/**
+	 * @param b
+	 */
 	public void setUse_pool(boolean b) {
 		use_pool = b;
 	}
 
+	/**
+	 * @param s
+	 */
 	public void setConstr(String s) {
 		constr = s;
 	}
 
+	/**
+	 * @param s
+	 */
 	public void setUser(String s) {
 		user = s;
 	}
 
+	/**
+	 * @param s
+	 */
 	public void setPw(String s) {
 		pw = s;
 	}
 
+	/**
+	 * @return
+	 */
 	public PrintWriter getLogWriter() {
 		return pwLog;
 	}
@@ -94,6 +112,9 @@ public class MbDb implements Serializable {
 	 * 
 	 * @param s
 	 *            : logfile pfad und name
+	 */
+	/**
+	 * @param s
 	 */
 	public void setLogfile(String s) {
 
@@ -135,6 +156,9 @@ public class MbDb implements Serializable {
 	 * @param s
 	 *            : Meldung
 	 */
+	/**
+	 * @param s
+	 */
 	public void log(String s) {
 		if (pwLog != null) {
 			pwLog.println(new Date().toString() + ": " + s);
@@ -150,6 +174,9 @@ public class MbDb implements Serializable {
 	 * 
 	 * @param con
 	 *            : Aktuelle connection zur Datenbank
+	 */
+	/**
+	 * @param con
 	 */
 	public void closeConnection(Connection con) {
 		try {
@@ -172,6 +199,9 @@ public class MbDb implements Serializable {
 	 * angelegt.
 	 * 
 	 * @return Connection-Objekt
+	 */
+	/**
+	 * @return
 	 */
 	public Connection getCon() {
 
@@ -223,6 +253,10 @@ public class MbDb implements Serializable {
 	/**
 	 * Gibt einige Infos zur aktuellen connection über das log file aus.
 	 * 
+	 * @param con
+	 * @throws SQLException
+	 */
+	/**
 	 * @param con
 	 * @throws SQLException
 	 */

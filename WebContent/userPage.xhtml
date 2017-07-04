@@ -62,7 +62,7 @@
 				<p />
 
 				<p>
-					#{res.keyHeute},
+					#{res.keyHeute} 
 					<h:outputText value="#{lbn.date}">
 						<f:convertDateTime locale="de_DE" dateStyle="full" type="both" />
 					</h:outputText>
@@ -92,12 +92,12 @@
 								<h:outputText value="#{serviceObject.name}" />
 							</p:column>
 
-							<p:column headerText="Dauer">
+							<p:column headerText="#{res.keyDauer}">
 								<h:outputText value="#{serviceObject.dauer}" />
 
 							</p:column>
 
-							<p:column headerText="Kosten">
+							<p:column headerText="#{res.keyKosten}">
 								<h:outputText value="#{serviceObject.kosten}">
 									<f:convertNumber currencyCode="EUR" type="currency" />
 								</h:outputText>

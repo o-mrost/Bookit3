@@ -45,6 +45,9 @@ public class LoginBeanNew {
 
 	/*--------------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
 	public LoginBeanNew() {
 		System.out.println("Mb.<init>...");
 		System.out.println((new Date()).toString());
@@ -52,86 +55,149 @@ public class LoginBeanNew {
 
 	/*--------------------------------------------------------------------------*/
 
+	/**
+	 * @return
+	 */
 	public int getUserId() {
 		return userId;
 	}
 
+	/**
+	 * @param userId
+	 */
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isAdminCheck() {
 		return adminCheck;
 	}
 
+	/**
+	 * @param adminLogin
+	 */
 	public void setAdminCheck(boolean adminLogin) {
 		this.adminCheck = adminLogin;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getSqlUsername() {
 		return sqlUsername;
 	}
 
+	/**
+	 * @param sqlUsername
+	 */
 	public void setSqlUsername(String sqlUsername) {
 		this.sqlUsername = sqlUsername;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getSqlPassword() {
 		return sqlPassword;
 	}
 
+	/**
+	 * @param sqlPassword
+	 */
 	public void setSqlPassword(String sqlPassword) {
 		this.sqlPassword = sqlPassword;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * @param username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isUserLoggedIn() {
 		return userLoggedIn;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isAdminLoggedIn() {
 		return adminLoggedIn;
 	}
 
+	/**
+	 * @param adminLoggedIn
+	 */
 	public void setAdminLoggedIn(boolean adminLoggedIn) {
 		this.adminLoggedIn = adminLoggedIn;
 	}
 
+	/**
+	 * @param s
+	 */
 	public void setKennung(String s) {
 		kennung = s;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getKennung() {
 		return kennung;
 	}
 
+	/**
+	 * @param s
+	 */
 	public void setPw(String s) {
 		pw = s;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getPw() {
 		return pw;
 	}
 
+	/**
+	 * @return
+	 */
 	public Date getDate() {
 		return new Date();
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isLoggedIn() {
 		return loggedIn;
 	}
@@ -140,6 +206,9 @@ public class LoginBeanNew {
 
 	// define what happens when login button gets clicked
 
+	/**
+	 * @return
+	 */
 	public String actLoginNew() {
 
 		System.out.println("actLogin()...");
@@ -224,6 +293,10 @@ public class LoginBeanNew {
 		return sOutcome;
 	}
 
+	/**
+	 * @param admin
+	 * @throws SQLException
+	 */
 	private void showData(boolean admin) throws SQLException {
 
 		if (admin) {
@@ -256,6 +329,9 @@ public class LoginBeanNew {
 //		sOutcome = "noone";
 //	}
 
+	/**
+	 * @return
+	 */
 	public String logout() {
 		System.out.println("logout ......");
 		loggedIn = false;
@@ -265,11 +341,17 @@ public class LoginBeanNew {
 		return sOutcome;
 	}
 
+	/**
+	 * @param ae
+	 */
 	public void languageDE(ActionEvent ae) {
 		System.out.println("deutsch");
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.GERMAN);
 	}
 
+	/**
+	 * @param ae
+	 */
 	public void languageEN(ActionEvent ae) {
 		System.out.println("english");
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.ENGLISH);

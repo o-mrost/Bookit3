@@ -20,6 +20,9 @@ public class CustomTimelineView implements Serializable {
 	private Date start;
 	private Date end;
 
+	/**
+	 * 
+	 */
 	@PostConstruct
 	public void init() {
 		// set initial start / end dates for the axis of the timeline
@@ -60,14 +63,23 @@ public class CustomTimelineView implements Serializable {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public TimelineModel getModel() {
 		return model;
 	}
 
+	/**
+	 * @return
+	 */
 	public Date getStart() {
 		return start;
 	}
 
+	/**
+	 * @return
+	 */
 	public Date getEnd() {
 		return end;
 	}

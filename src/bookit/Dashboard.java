@@ -22,6 +22,9 @@ public class Dashboard implements Serializable {
 	private static final long serialVersionUID = -444277160648617749L;
 	private DashboardModel model;
      
+    /**
+     * 
+     */
     @PostConstruct
     public void init() {
         model = new DefaultDashboardModel();
@@ -35,6 +38,9 @@ public class Dashboard implements Serializable {
         model.addColumn(column2);
     }
      
+    /**
+     * @param event
+     */
     public void handleReorder(DashboardReorderEvent event) {
         FacesMessage message = new FacesMessage();
         message.setSeverity(FacesMessage.SEVERITY_INFO);
@@ -44,22 +50,34 @@ public class Dashboard implements Serializable {
         addMessage(message);
     }
      
+    /**
+     * @param event
+     */
     public void handleClose(CloseEvent event) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel Closed", "Closed panel id:'" + event.getComponent().getId() + "'");
          
         addMessage(message);
     }
      
+    /**
+     * @param event
+     */
     public void handleToggle(ToggleEvent event) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, event.getComponent().getId() + " toggled", "Status:" + event.getVisibility().name());
          
         addMessage(message);
     }
      
+    /**
+     * @param message
+     */
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
      
+    /**
+     * @return
+     */
     public DashboardModel getModel() {
         return model;
     }

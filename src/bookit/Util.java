@@ -29,6 +29,9 @@ public class Util {
 
 	/*--------------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
 	public Util() {
 	}
 
@@ -39,6 +42,9 @@ public class Util {
 	 * 
 	 * @param con
 	 *            : Aktuelle DB-Verbindung
+	 */
+	/**
+	 * @param con
 	 */
 	public void closeConnection(Connection con) {
 		if (mbDb == null)
@@ -56,6 +62,9 @@ public class Util {
 	 * 
 	 * @return : Connection-Objekt
 	 */
+	/**
+	 * @return
+	 */
 	public Connection getCon() {
 
 		return FacesContext.getCurrentInstance().getApplication().evaluateExpressionGet(
@@ -64,6 +73,9 @@ public class Util {
 
 	/*--------------------------------------------------------------------------*/
 
+	/**
+	 * @param s
+	 */
 	public void log(String s) {
 		if (mbDb == null)
 			mbDb = (MbDb) getBean(DATABASE_BEAN_NAME);
@@ -74,6 +86,9 @@ public class Util {
 	/*--------------------------------------------------------------------------*/
 
 	// Nur der Systematik wegen (2012-09-16):
+	/**
+	 * @return
+	 */
 	public Connection getConnection() {
 		return getCon();
 	}
@@ -85,6 +100,10 @@ public class Util {
 	 * 
 	 * @param sBean
 	 * @return : Referenz auf Managed Bean
+	 */
+	/**
+	 * @param sBean
+	 * @return
 	 */
 	public Object getBean(String sBean) {
 
@@ -114,6 +133,11 @@ public class Util {
 	 *            Passwort im Klartext
 	 * @return out Verschlüsseltes Passwort oder unverschlüsselte
 	 *         Input-Parameter bei Fehler
+	 */
+	/**
+	 * @param user
+	 * @param pw
+	 * @return
 	 */
 	public String cryptpw(String user, String pw) {
 

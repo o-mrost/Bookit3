@@ -2,6 +2,10 @@ package bookit;
 
 public class TimeConvert {
 
+	/**
+	 * @param primeFacesDate
+	 * @return
+	 */
 	public String convertTime(String primeFacesDate) {
 
 		String convertedDate;
@@ -20,6 +24,10 @@ public class TimeConvert {
 		return convertedDate;
 	}
 
+	/**
+	 * @param month
+	 * @return
+	 */
 	private String convertMonth(String month) {
 
 		String monthString;

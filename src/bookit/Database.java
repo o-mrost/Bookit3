@@ -9,6 +9,9 @@ import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class Database {
 	
+	/**
+	 * @return
+	 */
 	public static Connection getConnection(){
 		System.out.println("Hello World this is freaking awesome");
 		

@@ -35,7 +35,10 @@ public class User {
 	  private String[] listAuswahlArray  = null;
 	  private String   listAuswahlString = "";
 	  
-	  public User()
+	  /**
+	 * 
+	 */
+	public User()
 	  {
 		//fill combobox		
 			options.add( new SelectItem( "Value_1", "Label_1", "Description_1" ) );
@@ -48,14 +51,23 @@ public class User {
 	  
 /*---------------------------------------------------------------------------------*/
 	  
-	  public List<SelectItem> getOptions() { return options; }
+	  /**
+	 * @return
+	 */
+	public List<SelectItem> getOptions() { return options; }
 	  
-	  public String[] getListAuswahlArray() 
+	  /**
+	 * @return
+	 */
+	public String[] getListAuswahlArray() 
 	  { 
 		  return listAuswahlArray; 
 	  }
 	  
-	  public void setListAuswahlArray( String[] s ) 
+	  /**
+	 * @param s
+	 */
+	public void setListAuswahlArray( String[] s ) 
 	  { 
 	    // System.out.println( "setListAuswahl..." );
 	    listAuswahlArray = s;
@@ -64,27 +76,42 @@ public class User {
 	      System.out.println( "Selektiert " + i + ": " + listAuswahlArray[ i ]);
 	  }
 	  
-	  public String getListAuswahlString()
+	  /**
+	 * @return
+	 */
+	public String getListAuswahlString()
 	  { 
 		  return listAuswahlString; 
 	  }
 	  
-	  public String getAuswahl()
+	  /**
+	 * @return
+	 */
+	public String getAuswahl()
 	  { 
 		  return auswahl; 
 	  }
 	  
-	  public void setAuswahl(String s) 
+	  /**
+	 * @param s
+	 */
+	public void setAuswahl(String s) 
 	  { 
 		  auswahl = s; 
 	  }
 
-	  public void cbxChangeListener(ValueChangeEvent vce) 
+	  /**
+	 * @param vce
+	 */
+	public void cbxChangeListener(ValueChangeEvent vce) 
 	  {
 	    System.out.println("cbxChangeListener: " + vce.getNewValue());    
 	  }
 	  
-	  public void lstChangeListener(ValueChangeEvent vce) 
+	  /**
+	 * @param vce
+	 */
+	public void lstChangeListener(ValueChangeEvent vce) 
 	  {
 	    // System.out.println( "lstChangeListener..." );
 	    String[] values = (String[]) vce.getNewValue();
@@ -96,7 +123,10 @@ public class User {
 	    }
 	  }
 
-	  public void setCbxSkin(HtmlSelectOneMenu cbxSkin) 
+	  /**
+	 * @param cbxSkin
+	 */
+	public void setCbxSkin(HtmlSelectOneMenu cbxSkin) 
 	  {
 	    this.cbxSkin = cbxSkin;
 	  }
@@ -104,7 +134,10 @@ public class User {
 	  /*---------------------------------------------------------------------------------*/
 	  
 	  //Initialisierung der Combobox mit gew�nschter initialer Skin
-	  public HtmlSelectOneMenu getCbxSkin() {
+	  /**
+	 * @return
+	 */
+	public HtmlSelectOneMenu getCbxSkin() {
 	    
 	    final String SKIN = "Value_2"; //
 	    

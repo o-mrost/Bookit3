@@ -26,21 +26,39 @@ public class ServiceView implements Serializable {
 
 	private ArrayList<ServiceObject> serviceObjectsToDisplay;
 
+	/**
+	 * @return
+	 */
 	public ArrayList<ServiceObject> getServiceObjectsToDisplay() {
 		return serviceObjectsToDisplay;
 	}
 
+	/**
+	 * @param serviceObjectsToDisplay
+	 */
 	public void setServiceObjectsToDisplay(ArrayList<ServiceObject> serviceObjectsToDisplay) {
 		this.serviceObjectsToDisplay = serviceObjectsToDisplay;
 	}
 
+	/**
+	 * 
+	 */
 	@ManagedProperty("#{serviceBean}")
 	private ServiceBean serviceBean;
 
+	/**
+	 * 
+	 */
 	private ServiceObject selected;
 
+	/**
+	 * 
+	 */
 	public int initialSize;
 
+	/**
+	 * 
+	 */
 	@PostConstruct
 	public void init() {
 
@@ -67,18 +85,31 @@ public class ServiceView implements Serializable {
 	//
 	// }
 
+	/**
+	 * @return
+	 */
 	public static String getServiceChosen() {
 		return serviceChosen;
 	}
 
+	/**
+	 * @param serviceChosen
+	 */
 	public static void setServiceChosen(String serviceChosen) {
 		ServiceView.serviceChosen = serviceChosen;
 	}
 
+	/**
+	 * @return
+	 */
 	public ServiceObject getSelected() {
 		return selected;
 	}
 
+	/**
+	 * @param selected
+	 * @throws IOException
+	 */
 	public void setSelected(ServiceObject selected) throws IOException {
 
 		this.selected = selected;
@@ -88,21 +119,33 @@ public class ServiceView implements Serializable {
 		redirect();
 	}
 
+	/**
+	 * @throws IOException
+	 */
 	public void redirect() throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext().redirect("calendar.xhtml");
 	}
 
+	/**
+	 * @param service
+	 */
 	public void setServiceBean(ServiceBean service) {
 		this.serviceBean = service;
 
 	}
 
+	/**
+	 * @return
+	 */
 	public ArrayList<ServiceObject> getServiceObjects() {
 
 		System.out.println("getter from view");
 		return serviceObjects;
 	}
 
+	/**
+	 * @param serviceObjects
+	 */
 	public void setServiceObjects(ArrayList<ServiceObject> serviceObjects) {
 		this.serviceObjects = serviceObjects;
 

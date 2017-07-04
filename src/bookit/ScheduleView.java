@@ -56,15 +56,24 @@ public class ScheduleView implements Serializable {
 	private HtmlSelectOneMenu cbxSkin = new HtmlSelectOneMenu();
 	private List<SelectItem> options = new ArrayList<SelectItem>();
 
+	/**
+	 * @return
+	 */
 	public List<SelectItem> getOptions() {
 		// System.out.println("getOptions method");
 		return options;
 	}
 
+	/**
+	 * @param cbxSkin
+	 */
 	public void setCbxSkin(HtmlSelectOneMenu cbxSkin) {
 		this.cbxSkin = cbxSkin;
 	}
 
+	/**
+	 * @return
+	 */
 	public HtmlSelectOneMenu getCbxSkin() {
 		// System.out.println("getCbxSkin methode");
 
@@ -72,63 +81,114 @@ public class ScheduleView implements Serializable {
 		return cbxSkin;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getServiceSelected() {
 		return serviceSelected;
 	}
 
+	/**
+	 * @param serviceSelected
+	 */
 	public void setServiceSelected(String serviceSelected) {
 		this.serviceSelected = serviceSelected;
 	}
 
+	/**
+	 * 
+	 */
 	private TimeConvert convert = new TimeConvert();
 
+	/**
+	 * 
+	 */
 	String select;
 
+	/**
+	 * 
+	 */
 	String sql_select = "SELECT b.ID_Booking booking, b.Time_From timefrom, "
 			+ "b.Time_To timeto, b.Comment comments, c.Company_Name compname, "
 			+ "cus.Customer_Lastname custname FROM booking b join company c on "
 			+ "b.ID_Company=c.ID_Company join customer cus on b.ID_Customer=cus.ID_Customer";
 
+	/**
+	 * 
+	 */
 	String sql_user = " WHERE cus.ID_Customer = ?";
 
+	/**
+	 * 
+	 */
 	private ScheduleModel eventModel;
+	/**
+	 * 
+	 */
 	private ScheduleEvent event = new DefaultScheduleEvent();
 
 	// getters and setters
 
+	/**
+	 * @return
+	 */
 	public ScheduleModel getEventModel() {
 		return eventModel;
 	}
 
+	/**
+	 * @return
+	 */
 	public ScheduleEvent getEvent() {
 		return event;
 	}
 
+	/**
+	 * @param event
+	 */
 	public void setEvent(ScheduleEvent event) {
 		this.event = event;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getCompanyName() {
 		return companyName;
 	}
 
+	/**
+	 * @param companyName
+	 */
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getCustomerName() {
 		return customerName;
 	}
 
+	/**
+	 * @param customerName
+	 */
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
 
+	/**
+	 * @return
+	 */
 	public java.util.Date getTime_from() {
 
 		return time_from;
 	}
 
+	/**
+	 * @param dt
+	 */
 	public void setTime_from(java.util.Date dt) {
 		if (dt != null)
 			time_from = new Date(dt.getTime());
@@ -136,18 +196,30 @@ public class ScheduleView implements Serializable {
 			time_from = new Date(0L);
 	}
 
+	/**
+	 * @return
+	 */
 	public String getComment() {
 		return comment;
 	}
 
+	/**
+	 * @param comment
+	 */
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
 
+	/**
+	 * @return
+	 */
 	public java.util.Date getTime_to() {
 		return time_to;
 	}
 
+	/**
+	 * @param dt
+	 */
 	public void setTime_to(java.util.Date dt) {
 		if (dt != null)
 			time_to = new Date(dt.getTime());
@@ -155,14 +227,23 @@ public class ScheduleView implements Serializable {
 			time_to = new Date(0L);
 	}
 
+	/**
+	 * @return
+	 */
 	public int getId_booking() {
 		return id_booking;
 	}
 
+	/**
+	 * @param id_booking
+	 */
 	public void setId_booking(int id_booking) {
 		this.id_booking = id_booking;
 	}
 
+	/**
+	 * 
+	 */
 	@PostConstruct
 	public void init() {
 		eventModel = new DefaultScheduleModel();
@@ -174,10 +255,16 @@ public class ScheduleView implements Serializable {
 		options.add(new SelectItem("welle value", "dauerwelle", "Description_3"));
 	}
 
+	/**
+	 * @param vce
+	 */
 	public void cbxChangeListner(ValueChangeEvent vce) {
 		System.out.println("Deine Wahl: " + vce.getNewValue());
 	}
 
+	/**
+	 * 
+	 */
 	private void connectToDb() {
 		System.out.println("load info from db");
 
@@ -219,6 +306,9 @@ public class ScheduleView implements Serializable {
 		}
 	}
 
+	/**
+	 * @throws SQLException
+	 */
 	private void displayAllAppointmentData() throws SQLException {
 
 		setId_booking(rs.getInt("booking"));
@@ -232,6 +322,10 @@ public class ScheduleView implements Serializable {
 
 	}
 
+	/**
+	 * @param actionEvent
+	 * @throws ParseException
+	 */
 	public void insert(ActionEvent actionEvent) throws ParseException {
 
 		if (event.getId() == null) {
@@ -289,10 +383,16 @@ public class ScheduleView implements Serializable {
 
 	}
 
+	/**
+	 * @param selectEvent
+	 */
 	public void onEventSelect(SelectEvent selectEvent) {
 		event = (ScheduleEvent) selectEvent.getObject();
 	}
 
+	/**
+	 * @param selectEvent
+	 */
 	public void onDateSelect(SelectEvent selectEvent) {
 
 		System.out.println("+++++ new string: " + view.getServiceChosen());

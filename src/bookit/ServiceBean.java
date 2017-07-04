@@ -24,16 +24,28 @@ public class ServiceBean {
 
 	static int sizeOfList;
 
+	/**
+	 * @return
+	 */
 	public static int getSizeOfList() {
 		return sizeOfList;
 	}
 
+	/**
+	 * @param sizeOfList
+	 */
 	public static void setSizeOfList(int sizeOfList) {
 		ServiceBean.sizeOfList = sizeOfList;
 	}
 
+	/**
+	 * 
+	 */
 	private ArrayList<ServiceObject> listOfServices = new ArrayList<>();
 
+	/**
+	 * @return
+	 */
 	public ArrayList<ServiceObject> getAllServicesFromDB() {
 
 		System.out.println("load info from db");
