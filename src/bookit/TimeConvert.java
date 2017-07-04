@@ -3,6 +3,7 @@ package bookit;
 public class TimeConvert {
 
 	/**
+	 * converts time from PrimeFaces format to sql timestamp 
 	 * @param primeFacesDate
 	 * @return
 	 */

@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.Locale;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,24 +20,19 @@ import javax.faces.event.ActionEvent;
 
 public class LoginBeanNew {
 
-	static String sOutcome = null;
-
 	private Util util = new Util();
 	private Connection con = null;
 	private Statement stm = null;
 	private ResultSet rs = null;
 
-	private String username = "";
-	private String password = "";
+	static String sOutcome = null;
 	private boolean userLoggedIn = false;
 	static boolean adminLoggedIn = false;
 	static int userId;
-
 	private String name = "";
 	private String sqlUsername = "";
 	private String sqlPassword = "";
 	private boolean adminCheck = false;
-
 	private String kennung = "";
 	private String pw = "";
 	private boolean loggedIn = false;
@@ -53,160 +47,10 @@ public class LoginBeanNew {
 		System.out.println((new Date()).toString());
 	}
 
-	/*--------------------------------------------------------------------------*/
-
-	/**
-	 * @return
-	 */
-	public int getUserId() {
-		return userId;
-	}
-
-	/**
-	 * @param userId
-	 */
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	/**
-	 * @return
-	 */
-	public boolean isAdminCheck() {
-		return adminCheck;
-	}
-
-	/**
-	 * @param adminLogin
-	 */
-	public void setAdminCheck(boolean adminLogin) {
-		this.adminCheck = adminLogin;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getSqlUsername() {
-		return sqlUsername;
-	}
-
-	/**
-	 * @param sqlUsername
-	 */
-	public void setSqlUsername(String sqlUsername) {
-		this.sqlUsername = sqlUsername;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getSqlPassword() {
-		return sqlPassword;
-	}
-
-	/**
-	 * @param sqlPassword
-	 */
-	public void setSqlPassword(String sqlPassword) {
-		this.sqlPassword = sqlPassword;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getUsername() {
-		return username;
-	}
-
-	/**
-	 * @param username
-	 */
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	/**
-	 * @return
-	 */
-	public boolean isUserLoggedIn() {
-		return userLoggedIn;
-	}
-
-	/**
-	 * @return
-	 */
-	public boolean isAdminLoggedIn() {
-		return adminLoggedIn;
-	}
-
-	/**
-	 * @param adminLoggedIn
-	 */
-	public void setAdminLoggedIn(boolean adminLoggedIn) {
-		this.adminLoggedIn = adminLoggedIn;
-	}
-
-	/**
-	 * @param s
-	 */
-	public void setKennung(String s) {
-		kennung = s;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getKennung() {
-		return kennung;
-	}
-
-	/**
-	 * @param s
-	 */
-	public void setPw(String s) {
-		pw = s;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getPw() {
-		return pw;
-	}
-
-	/**
-	 * @return
-	 */
-	public Date getDate() {
-		return new Date();
-	}
-
-	/**
-	 * @return
-	 */
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
-
 	/*---------------------------------------------------------------------------------*/
 
-	// define what happens when login button gets clicked
-
 	/**
+	 * login method with password encryption
 	 * @return
 	 */
 	public String actLoginNew() {
@@ -288,12 +132,13 @@ public class LoginBeanNew {
 		}
 
 		System.out.println("angemeldet als: " + sOutcome);
-		System.out.println("++++++++++ " + "logged as: " + name + ", pass: " + sqlPassword + ", name: " + sqlUsername);
 
 		return sOutcome;
 	}
 
 	/**
+	 * displays data for user or admin depending on who is logged in
+	 * 
 	 * @param admin
 	 * @throws SQLException
 	 */
@@ -320,16 +165,10 @@ public class LoginBeanNew {
 		}
 	}
 
-//	public void aclLogout(ActionEvent ae) {
-//
-//		System.out.println("logout with action event");
-//		loggedIn = false;
-//		adminLoggedIn = false;
-//		userLoggedIn = false;
-//		sOutcome = "noone";
-//	}
-
 	/**
+	 * log out method return string is used in navigation rules to go back to
+	 * loginPage.xhtml
+	 * 
 	 * @return
 	 */
 	public String logout() {
@@ -342,6 +181,7 @@ public class LoginBeanNew {
 	}
 
 	/**
+	 * sets locale to implement translation in german
 	 * @param ae
 	 */
 	public void languageDE(ActionEvent ae) {
@@ -350,11 +190,147 @@ public class LoginBeanNew {
 	}
 
 	/**
+	 * sets locale to implement translation in german
 	 * @param ae
 	 */
 	public void languageEN(ActionEvent ae) {
 		System.out.println("english");
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.ENGLISH);
+	}
+
+	/*-------------- getters and setters -------------------------------------------------*/
+
+	/**
+	 * @return
+	 */
+	public int getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId
+	 */
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isAdminCheck() {
+		return adminCheck;
+	}
+
+	/**
+	 * @param adminLogin
+	 */
+	public void setAdminCheck(boolean adminLogin) {
+		this.adminCheck = adminLogin;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getSqlUsername() {
+		return sqlUsername;
+	}
+
+	/**
+	 * @param sqlUsername
+	 */
+	public void setSqlUsername(String sqlUsername) {
+		this.sqlUsername = sqlUsername;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getSqlPassword() {
+		return sqlPassword;
+	}
+
+	/**
+	 * @param sqlPassword
+	 */
+	public void setSqlPassword(String sqlPassword) {
+		this.sqlPassword = sqlPassword;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isUserLoggedIn() {
+		return userLoggedIn;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isAdminLoggedIn() {
+		return adminLoggedIn;
+	}
+
+	/**
+	 * @param adminLoggedIn
+	 */
+	public void setAdminLoggedIn(boolean adminLoggedIn) {
+		this.adminLoggedIn = adminLoggedIn;
+	}
+
+	/**
+	 * @param s
+	 */
+	public void setKennung(String s) {
+		kennung = s;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getKennung() {
+		return kennung;
+	}
+
+	/**
+	 * @param s
+	 */
+	public void setPw(String s) {
+		pw = s;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getPw() {
+		return pw;
+	}
+
+	/**
+	 * @return
+	 */
+	public Date getDate() {
+		return new Date();
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isLoggedIn() {
+		return loggedIn;
 	}
 
 }
