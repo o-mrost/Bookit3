@@ -16,7 +16,6 @@
 
 <h:body>
 	<ui:composition template="/masterLayout.xhtml">
-
 		<ui:define name="title">Admin view</ui:define>
 		<ui:define name="content">
 
@@ -60,7 +59,7 @@
 				<p />
 
 				<p>
-					#{res.keyHeute} 
+					#{res.keyHeute}
 					<h:outputText value="#{lbn.date}">
 						<f:convertDateTime locale="de_DE" dateStyle="full" type="both" />
 					</h:outputText>
@@ -136,19 +135,12 @@
 									<h:outputText
 										value="Während der Sommerzeit verlängern wir unsere Öffnungszeiten bis 18 Uhr. Wir freuen uns auf Sie!"></h:outputText>
 								</h:panelGrid>
-
 							</p:fieldset>
-
 						</h:form>
-
 					</p:panel>
-
 				</p:dashboard>
-
 			</h:form>
-
 		</ui:define>
 	</ui:composition>
-
 </h:body>
 </html>

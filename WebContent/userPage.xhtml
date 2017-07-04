@@ -17,11 +17,8 @@
 <h:body>
 
 	<ui:composition template="/masterLayout.xhtml">
-
 		<ui:define name="title">User view</ui:define>
-
 		<ui:define name="content">
-
 
 			<!--  ===================================Login menu user===============================   -->
 
@@ -29,11 +26,7 @@
 				<p:growl id="messages" />
 
 				<p:menubar>
-					<p:submenu label="#{res.keyTermin}" icon="ui-icon-circlesmall-plus"
-						url="calender.xhtml">
-						<p:menuitem value="#{res.keyTerminBuchen}" url="calendar.xhtml" />
-					</p:submenu>
-
+					
 					<p:submenu label="#{res.keyBuchungsübersicht}"
 						icon="ui-icon-calendar" url="calender.xhtml">
 						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
@@ -137,15 +130,10 @@
 									<h:outputText
 										value="Während der Sommerzeit verlängern wir unsere Öffnungszeiten bis 18 Uhr. Wir freuen uns auf Sie!"></h:outputText>
 								</h:panelGrid>
-
 							</p:fieldset>
-
 						</h:form>
-
 					</p:panel>
-
 				</p:dashboard>
-
 			</h:form>
 		</ui:define>
 	</ui:composition>
